@@ -14,10 +14,22 @@ window.onload = function()
     var getOlive4 = document.childNodes[1].childNodes[2].childNodes[1].childNodes[1].childNodes[5].childNodes[1].childNodes[23];
     var getDiv = document.childNodes[1].childNodes[2].childNodes[1].childNodes[1].childNodes[5].childNodes[1];
 
-    function setParent (element, parent)
+    function setParent (element)
     {
-        parent.appendChild(element);
+        getDiv.append(element);
     }
 
-    setParent(getOrange1, getDiv);
+    getDiv.innerHTML = "";
+    setParent(getOrange1);
+    setParent(getOrange2);
+    setParent(getOrange3);/*
+    setParent(getOrange4);
+    setParent(getPurple1);
+    setParent(getPurple2);
+    setParent(getPurple3);
+    setParent(getBlack);
+    setParent(getOlive1);
+    setParent(getOlive2);
+    setParent(getOlive3);
+    setParent(getOlive4);*/
 }

@@ -2,12 +2,10 @@ window.onload  = function ()
 {
     var getSquare = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1].childNodes[1];
     var sqrCtx = getSquare.getContext('2d');
-    var music = document.body.childNodes[1].childNodes[1].childNodes[3].childNodes[5].childNodes[0];
+    var music = document.body.childNodes[1].childNodes[1].childNodes[3].childNodes[5].childNodes[0].textContent;
     var pause = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[1];
     var stop = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[3];
     var mute = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[5];
-
-    console.log(music);
     
     sqrCtx.beginPath();
     sqrCtx.moveTo(6, 6);
