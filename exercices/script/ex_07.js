@@ -1,43 +1,43 @@
-window.onload  = function ()
-{
-    var getSquare = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1].childNodes[1];
-    var sqrCtx = getSquare.getContext('2d');
-    var music = document.body.childNodes[1].childNodes[1].childNodes[3].childNodes[5].childNodes[0].textContent;
-    var pause = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[1];
-    var stop = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[3];
-    var mute = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[5];
-    
-    sqrCtx.beginPath();
-    sqrCtx.moveTo(6, 6);
-    sqrCtx.lineTo(14, 10);
-    sqrCtx.lineTo(6, 14);
-    sqrCtx.closePath();
+window.onload = function() {
+  var canvas =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1]
+      .childNodes[1];
+  var button1 =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3]
+      .childNodes[1];
+  var button2 =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3]
+      .childNodes[3];
+  var button3 =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3]
+      .childNodes[5];
+  var music = new Audio(
+    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+  );
+  var ctx = canvas.getContext('2d');
+  ctx.beginPath();
+  ctx.strokeStyle = 'white';
+  ctx.moveTo(6, 6);
+  ctx.lineTo(14, 10);
+  ctx.lineTo(6, 14);
+  ctx.closePath();
+  ctx.stroke();
 
-    sqrCtx.lineWidth = 1;
-    sqrCtx.strokeStyle = '#ffffff';
-    sqrCtx.stroke();
-
-    sqrCtx.fillStyle = '#ffffff';
-    sqrCtx.fill();
-
-    getSquare.onclick = function playMusic()
-    {
-        music.play();
+  canvas.onclick = function() {
+    music.play();
+  };
+  button1.onclick = function() {
+    music.pause();
+  };
+  button2.onclick = function() {
+    music.pause();
+    music.currentTime = 0;
+  };
+  button3.onclick = function() {
+    if (music.muted != true) {
+      music.muted = true;
+    } else {
+      music.muted = false;
     }
-
-    pause.onclick = function pauseMusic()
-    {
-        music.pause();
-    }
-
-    stop.onclick = function stopMusic()
-    {
-        music.pause();
-        music.currentTime = 0;
-    }
-
-    mute.onclick = function muteMusic()
-    {
-        music.muted();
-    }
-}
+  };
+};

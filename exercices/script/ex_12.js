@@ -1,10 +1,10 @@
-window.onload = function()
-{
-    var racingImg = document.body.childNodes[1].childNodes[1].childNodes[3].childNodes[3].textContent;
-    var mainDiv = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1];
+window.onload = function() {
+  var racingImg = 'https://i.imgur.com/0YLolty.jpg';
+  var mainDiv =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1];
 
-    window.localStorage.setItem('imgData', racingImg);
+  window.localStorage.setItem('imgData', racingImg);
+  let a = localStorage.getItem('imgData');
 
-    mainDiv.innerHTML = racingImg;
-    this.console.log(racingImg);
-}
+  mainDiv.innerHTML = '<img src=' + a + '>';
+};

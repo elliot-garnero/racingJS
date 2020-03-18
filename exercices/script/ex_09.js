@@ -1,18 +1,72 @@
-window.onload = function()
-{
-    var getSquare = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1].childNodes[1];
-    var getDiv = document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1];
-    var draggableElement = getSquare.setAttribute('draggable', true);
-    var dropZone = getDiv.setAttribute('drop', true);
+window.onload = function() {
+  var dragItem =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1]
+      .childNodes[1];
+  var container =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[1];
+  var coordinates =
+    document.body.childNodes[1].childNodes[1].childNodes[5].childNodes[3];
 
-    /*
-    dropZone.addEventListener('dragenter', dragenter);
-    dropZone.addEventListener('dragleave', dragleave);
-    dropZone.addEventListener('dragover', dragover);
-    dropZone.addEventListener('drop', drop);
+  var active = false;
+  var currentX;
+  var currentY;
+  var initialX;
+  var initialY;
+  var xOffset = 0;
+  var yOffset = 0;
 
-    draggableElement.addEventListener('dragstart', dragstart);
-    draggableElement.addEventListener('dragend', dragend);
-    */
-    dropZone.append(draggableElement);
-}
+  container.addEventListener('touchstart', dragStart, false);
+  container.addEventListener('touchend', dragEnd, false);
+  container.addEventListener('touchmove', drag, false);
+
+  container.addEventListener('mousedown', dragStart, false);
+  container.addEventListener('mouseup', dragEnd, false);
+  container.addEventListener('mousemove', drag, false);
+
+  function dragStart(e) {
+    if (e.type === 'touchstart') {
+      initialX = e.touches[0].clientX - xOffset;
+      initialY = e.touches[0].clientY - yOffset;
+    } else {
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+    }
+
+    if (e.target === dragItem) {
+      active = true;
+    }
+  }
+
+  function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+
+    coordinates.innerHTML =
+      'Nouvelles coordonnées => {x:' + xOffset + ', y:' + yOffset + '}';
+
+    active = false;
+  }
+
+  function drag(e) {
+    if (active) {
+      e.preventDefault();
+
+      if (e.type === 'touchmove') {
+        currentX = e.touches[0].clientX - initialX;
+        currentY = e.touches[0].clientY - initialY;
+      } else {
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+      }
+
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, dragItem);
+    }
+  }
+
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = 'translate3d(' + xPos + 'px, ' + yPos + 'px, 0)';
+  }
+};
