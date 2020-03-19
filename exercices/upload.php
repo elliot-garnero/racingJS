@@ -1,5 +1,7 @@
 <?php
 // Output JSON
+include 'ex_16.html';
+var_dump($_FILES);
 function outputJSON($msg, $status = 'error'){
     header('Content-Type: application/json');
     die(json_encode(array(
@@ -39,3 +41,4 @@ if(!move_uploaded_file($_FILES['SelectedFile']['tmp_name'], 'upload/' . $_FILES[
 
 // Success!
 outputJSON('upload/' . $_FILES['SelectedFile']['name']);
+?>
